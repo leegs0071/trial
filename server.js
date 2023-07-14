@@ -22,10 +22,10 @@ app.use(express.json());
 
 app.post('/api/passwords', async (req, res) => {
   try {
-    const { title, url, id, password } = req.body;
+    const { title, url, idinfo, pwinfo } = req.body;
     const client = await pool.connect();
-    const query = 'INSERT INTO passwords (title, url, id, password) VALUES ($1, $2, $3, $4)';
-    const values = [title, url, id, password];
+    const query = 'INSERT INTO passwords (title, url, idinfo, pwinfo) VALUES ($1, $2, $3, $4)';
+    const values = [title, url, idinfo, pwinfo];
     await client.query(query, values);
     res.sendStatus(201);
     client.release();
@@ -38,7 +38,7 @@ app.post('/api/passwords', async (req, res) => {
 app.get('/api/passwords', async (req, res) => {
   try {
     const client = await pool.connect();
-    const result = await client.query('SELECT * FROM passwords');
+    const result = await client.query('SELECT id, title, url, idinfo, pwinfo, userinfo, updated_at FROM passwords');
     const passwords = result.rows;
     res.json(passwords);
     client.release();
