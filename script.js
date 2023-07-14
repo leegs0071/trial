@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const data = {
     title: title,
     url: url,
-    idinfo: idinfo,
-    pwinfo: pwinfo
+    id: idinfo,
+    password: pwinfo
   };
 
   fetch('/api/passwords', {
