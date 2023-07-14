@@ -1,4 +1,5 @@
-// script.js
+//script.js
+
 document.addEventListener('DOMContentLoaded', function() {
   const passwordForm = document.getElementById('password-form');
   const passwordList = document.getElementById('password-list');
@@ -41,49 +42,21 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   }
 
-  /* function getPasswords() {
-    fetch('/api/passwords')
-      .then(response => response.json())
-      .then(data => {
-        renderPasswordList(data);
-      })
-      .catch(error => {
-        console.error('Failed to get passwords:', error);
-      });
-  }  
-
   function getPasswords() {
-  fetch('/api/passwords')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('비밀번호를 가져오는 데 실패했습니다.');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log(data); // 응답을 로그로 출력하여 형식을 확인합니다.
-      renderPasswordList(data);
-    })
-    .catch(error => {
-      console.error('비밀번호를 가져오는 데 실패했습니다:', error);
-    });
-} */
-
-    function getPasswords() {
-    fetch('/api/passwords12312313')
-      .then(response => response.json())
+    fetch('/api/passwords')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('비밀번호를 가져오는 데 실패했습니다.');
+        }
+        return response.json();
+      })
       .then(data => {
         renderPasswordList(data);
       })
       .catch(error => {
-        console.error('Failed to get passwords:', error);
+        console.error('비밀번호를 가져오는 데 실패했습니다:', error);
       });
   }
-
-
-
-
-  
 
   function renderPasswordList(passwords) {
     passwordList.innerHTML = '';
