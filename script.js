@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('/api/passwords')
       .then(response => {
         if (!response.ok) {
-          throw new Error('비밀번호를 가져오는 데 실패했습니다.');
+          throw new Error('response error');
         }
         return response.json();
       })
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
         renderPasswordList(data);
       })
       .catch(error => {
-        console.error('비밀번호를 가져오는 데 실패했습니다:', error);
+        console.error('catch error : ', error);
       });
   }
 
