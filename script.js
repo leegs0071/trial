@@ -1,3 +1,5 @@
+//script.js
+
 document.addEventListener('DOMContentLoaded', function() {
   const passwordForm = document.getElementById('password-form');
   const passwordList = document.getElementById('password-list');
