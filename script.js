@@ -1,5 +1,3 @@
-//script.js
-
 document.addEventListener('DOMContentLoaded', function() {
   const passwordForm = document.getElementById('password-form');
   const passwordList = document.getElementById('password-list');
@@ -67,8 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <div>
           <strong>Title:</strong> ${password.title}<br>
           <strong>URL:</strong> ${password.url}<br>
-          <strong>ID Info:</strong> ${password.id}<br>
-          <strong>Password Info:</strong> ${password.password}
+          <strong>ID:</strong> ${password.id}<br>
+          <strong>Password:</strong> ${password.password}
         </div>
         <div>
           <button class="edit-button" data-id="${password.id}">Edit</button>
