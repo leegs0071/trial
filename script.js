@@ -9,10 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
     event.preventDefault();
     const title = document.getElementById('title').value;
     const url = document.getElementById('url').value;
-    const idinfo = document.getElementById('idinfo').value;
-    const pwinfo = document.getElementById('pwinfo').value;
+const id = document.getElementById('id').value;
+const password = document.getElementById('password').value;
 
-    savePassword(title, url, idinfo, pwinfo);
+savePassword(title, url, id, password);
+
 
     passwordForm.reset();
   });
@@ -21,12 +22,12 @@ document.addEventListener('DOMContentLoaded', function() {
   getPasswords();
 
   // 비밀번호 저장
-  function savePassword(title, url, idinfo, pwinfo) {
+function savePassword(title, url, id, password) {
   const data = {
     title: title,
     url: url,
-    id: idinfo,
-    password: pwinfo
+    id: id,
+    password: password
   };
 
   fetch('/api/passwords', {
