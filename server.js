@@ -1,37 +1,49 @@
-<!--server.js-->
+//server.js
 
-// 데이터 저장
-async function saveData(title, url, id, password, user, updatedAt) {
-  const response = await fetch('/save-data', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      title: title,
-      url: url,
-      id: id,
-      password: password,
-      user: user,
-      updatedAt: updatedAt
-    })
-  });
-
-  if (response.ok) {
-    getAllData(); // 데이터 저장 후 데이터 다시 조회
-  } else {
-    console.error('Failed to save data.');
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
   }
-}
+});
 
-// 저장된 데이터 조회
-async function getAllData() {
-  const response = await fetch('/get-all-data');
-  if (response.ok) {
-    const data = await response.json();
-    renderDataList(data);
-  } else {
-    console.error('Failed to get data.');
+app.use(express.static('public'));
+app.use(express.json());
+
+// 비밀번호 저장 API
+app.post('/api/passwords', async (req, res) => {
+  const { title, url, id, password, user, updatedAt } = req.body;
+  try {
+    const client = await pool.connect();
+    const query = 'INSERT INTO passwords (title, url, id, password, "user", "updatedAt") VALUES ($1, $2, $3, $4, $5, $6)';
+    const values = [title, url, id, password, user, updatedAt];
+    await client.query(query, values);
+    res.sendStatus(201);
+    client.release();
+  } catch (error) {
+    console.error('Failed to save password:', error);
+    res.sendStatus(500);
   }
-}
+});
 
+// 저장된 비밀번호 조회 API
+app.get('/api/passwords', async (req, res) => {
+  try {
+    const client = await pool.connect();
+    const result = await client.query('SELECT * FROM passwords ORDER BY "updatedAt" DESC');
+    const passwords = result.rows;
+    res.json(passwords);
+    client.release();
+  } catch (error) {
+    console.error('Failed to get passwords:', error);
+    res.sendStatus(500);
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server listening at http://localhost:${port}`);
+});
