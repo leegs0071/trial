@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .catch(error => {
         console.error('Failed to get passwords:', error);
       });
-  }  */
+  }  
 
   function getPasswords() {
   fetch('/api/passwords')
@@ -67,7 +67,18 @@ document.addEventListener('DOMContentLoaded', function() {
     .catch(error => {
       console.error('비밀번호를 가져오는 데 실패했습니다:', error);
     });
-}
+} */
+
+    function getPasswords() {
+    fetch('/api/passwords12312313')
+      .then(response => response.json())
+      .then(data => {
+        renderPasswordList(data);
+      })
+      .catch(error => {
+        console.error('Failed to get passwords:', error);
+      });
+  }
 
 
 
