@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const { Pool } = require('pg');
-const connectionString = ep-snowy-king-089485-pooler.ap-southeast-1.postgres.vercel-storage.com;
+const connectionString = 'ep-snowy-king-089485-pooler.ap-southeast-1.postgres.vercel-storage.com';
 const pool = new Pool({
   connectionString,
   ssl: {
