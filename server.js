@@ -15,7 +15,7 @@ const pool = new Pool({
 app.use(express.static('public'));
 app.use(express.json());
 
-// 비밀번호 저장 API
+// 비밀번호 저장 API 
 app.post('/api/passwords', async (req, res) => {
   const { title, url, id, password, user, updatedAt } = req.body;
   try {
