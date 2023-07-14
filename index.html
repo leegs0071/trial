@@ -1,31 +1,25 @@
-const { Pool } = require('pg');
-
-// PostgreSQL 연결 정보
-const pool = new Pool({
-  host: 'ep-snowy-king-089485-pooler.ap-southeast-1.postgres.vercel-storage.com',
-  port: process.env.DB_PORT,
-  database: 'password',
-  user: 'default',
-  password: '2sSDoclMyu6Y'
-});
-
-// 비밀번호 저장 함수
-async function savePassword(website, username, password) {
-  const client = await pool.connect();
-  try {
-    await client.query('BEGIN');
-    const query = 'INSERT INTO passwords (website, username, password) VALUES ($1, $2, $3)';
-    const values = [website, username, password];
-    await client.query(query, values);
-    await client.query('COMMIT');
-    console.log('비밀번호가 성공적으로 저장되었습니다.');
-  } catch (error) {
-    await client.query('ROLLBACK');
-    console.error('비밀번호 저장 오류:', error);
-  } finally {
-    client.release();
-  }
-}
-
-// 사용 예시
-savePassword('example.com', 'john', 'secretpassword');
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Password Manager</title>
+  <!-- 추가적인 스타일시트 파일이 있다면 여기에 추가 -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- 비밀번호 관리 플랫폼의 UI 요소들을 이곳에 작성 -->
+  <h1>Welcome to Password Manager</h1>
+  <form>
+    <label for="username">Username:</label>
+    <input type="text" id="username">
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password">
+    <br>
+    <button type="button" id="login-button">Login</button>
+  </form>
+  
+  <!-- 추가적인 스크립트 파일이 있다면 여기에 추가 -->
+  <script src="script.js"></script>
+</body>
+</html>
