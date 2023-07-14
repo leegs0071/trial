@@ -18,12 +18,34 @@ const pool = new Pool({
 });
 
 // Define your API routes as Serverless Functions
+app.use(express.json());
+
 app.post('/api/passwords', async (req, res) => {
-  // Handle your API endpoint logic here
+  try {
+    const { title, url, id, password } = req.body;
+    const client = await pool.connect();
+    const query = 'INSERT INTO passwords (title, url, id, password) VALUES ($1, $2, $3, $4)';
+    const values = [title, url, id, password];
+    await client.query(query, values);
+    res.sendStatus(201);
+    client.release();
+  } catch (error) {
+    console.error('Failed to save password:', error);
+    res.sendStatus(500);
+  }
 });
 
 app.get('/api/passwords', async (req, res) => {
-  // Handle your API endpoint logic here
+  try {
+    const client = await pool.connect();
+    const result = await client.query('SELECT * FROM passwords');
+    const passwords = result.rows;
+    res.json(passwords);
+    client.release();
+  } catch (error) {
+    console.error('Failed to get passwords:', error);
+    res.sendStatus(500);
+  }
 });
 
 // Handle other requests with Next.js
