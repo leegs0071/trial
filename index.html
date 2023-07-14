@@ -2,11 +2,11 @@ const { Pool } = require('pg');
 
 // PostgreSQL 연결 정보
 const pool = new Pool({
-  host: ep-snowy-king-089485-pooler.ap-southeast-1.postgres.vercel-storage.com,
+  host: 'ep-snowy-king-089485-pooler.ap-southeast-1.postgres.vercel-storage.com',
   port: process.env.DB_PORT,
   database: 'password',
-  user: default,
-  password: 2sSDoclMyu6Y
+  user: 'default',
+  password: '2sSDoclMyu6Y'
 });
 
 // 비밀번호 저장 함수
