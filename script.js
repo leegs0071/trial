@@ -1,6 +1,5 @@
 //script.js
 
-
 document.addEventListener('DOMContentLoaded', function() {
   const passwordForm = document.getElementById('password-form');
   const passwordList = document.getElementById('password-list');
@@ -10,12 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     event.preventDefault();
     const title = document.getElementById('title').value;
     const url = document.getElementById('url').value;
-    const id = document.getElementById('id').value;
-    const password = document.getElementById('password').value;
-    const user = document.getElementById('user').value;
-    const updatedAt = new Date().toISOString();
+    const idinfo = document.getElementById('idinfo').value;
+    const pwinfo = document.getElementById('pwinfo').value;
 
-    savePassword(title, url, id, password, user, updatedAt);
+    savePassword(title, url, idinfo, pwinfo);
 
     passwordForm.reset();
   });
@@ -24,14 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
   getPasswords();
 
   // 비밀번호 저장
-  function savePassword(title, url, id, password, user, updatedAt) {
+  function savePassword(title, url, idinfo, pwinfo) {
     const data = {
       title: title,
       url: url,
-      id: id,
-      password: password,
-      user: user,
-      updatedAt: updatedAt
+      idinfo: idinfo,
+      pwinfo: pwinfo
     };
 
     fetch('/api/passwords', {
@@ -72,10 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <div>
           <strong>Title:</strong> ${password.title}<br>
           <strong>URL:</strong> ${password.url}<br>
-          <strong>ID:</strong> ${password.id}<br>
-          <strong>Password:</strong> ${password.password}<br>
-          <strong>User:</strong> ${password.user}<br>
-          <strong>Updated At:</strong> ${password.updatedAt}
+          <strong>ID Info:</strong> ${password.idinfo}<br>
+          <strong>Password Info:</strong> ${password.pwinfo}
         </div>
         <div>
           <button class="edit-button" data-id="${password.id}">Edit</button>
