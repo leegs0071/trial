@@ -1,3 +1,5 @@
+<!--server.js-->
+
 // 데이터 저장
 async function saveData(title, url, id, password, user, updatedAt) {
   const response = await fetch('/save-data', {
