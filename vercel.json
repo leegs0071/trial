@@ -16,13 +16,5 @@
       "dest": "/src/$1"
     }
   ],
-  "env": {
-    "API_KEY": "your-api-key",
-    "DB_HOST": "localhost",
-    "DB_PORT": 5432
-  },
-  "envSecrets": [
-    "DB_PASSWORD"
-  ],
   "public": true
 }
