@@ -1,5 +1,6 @@
 //script.js
 
+
 document.addEventListener('DOMContentLoaded', function() {
   const passwordForm = document.getElementById('password-form');
   const passwordList = document.getElementById('password-list');
@@ -70,4 +71,19 @@ document.addEventListener('DOMContentLoaded', function() {
       li.innerHTML = `
         <div>
           <strong>Title:</strong> ${password.title}<br>
-          <strong>URL:</strong> ${
+          <strong>URL:</strong> ${password.url}<br>
+          <strong>ID:</strong> ${password.id}<br>
+          <strong>Password:</strong> ${password.password}<br>
+          <strong>User:</strong> ${password.user}<br>
+          <strong>Updated At:</strong> ${password.updatedAt}
+        </div>
+        <div>
+          <button class="edit-button" data-id="${password.id}">Edit</button>
+          <button class="delete-button" data-id="${password.id}">Delete</button>
+        </div>
+      `;
+
+      passwordList.appendChild(li);
+    });
+  }
+});
