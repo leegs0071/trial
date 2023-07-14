@@ -40,6 +40,7 @@ app.post('/api/passwords', async (req, res) => {
 });
 
 app.get('/api/passwords', async (req, res) => {
+  console.log('!!!!!!!!!!!!!!!!!!!!!!!!');
   try {
     const client = await pool.connect();
     const result = await client.query('SELECT id, title, url, idinfo, pwinfo, userinfo, updated_at FROM passwords');
