@@ -22,28 +22,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 비밀번호 저장
   function savePassword(title, url, idinfo, pwinfo) {
-    const data = {
-      title: title,
-      url: url,
-      idinfo: idinfo,
-      pwinfo: pwinfo
-    };
+  const data = {
+    title: title,
+    url: url,
+    idinfo: idinfo,
+    pwinfo: pwinfo
+  };
 
-    fetch('/api/passwords', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-      getPasswords();
-    })
-    .catch(error => {
-      console.error('Failed to save password:', error);
-    });
-  }
+  fetch('/api/passwords', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => {
+    getPasswords();
+  })
+  .catch(error => {
+    console.error('Failed to save password:', error);
+  });
+}
+
 
   // 저장된 데이터 조회
   function getPasswords() {
