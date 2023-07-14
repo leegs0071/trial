@@ -1,4 +1,5 @@
-// server.js
+//server.js
+
 const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
@@ -16,6 +17,9 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 });
+
+// Serve static files
+app.use(express.static('public'));
 
 // Define your API routes as Serverless Functions
 app.use(express.json());
